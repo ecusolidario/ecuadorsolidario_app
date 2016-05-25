@@ -11,10 +11,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160525195734) do
+ActiveRecord::Schema.define(version: 20160525221235) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "casos", force: :cascade do |t|
+    t.string   "titulo"
+    t.text     "problema"
+    t.string   "ubicacion"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "casos", ["user_id"], name: "index_casos_on_user_id", using: :btree
+
+  create_table "recursos", force: :cascade do |t|
+    t.string   "nombre"
+    t.integer  "caso_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "objetivo"
+    t.integer  "conseguidos"
+  end
+
+  add_index "recursos", ["caso_id"], name: "index_recursos_on_caso_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -51,4 +73,6 @@ ActiveRecord::Schema.define(version: 20160525195734) do
   add_index "users", ["invited_by_id"], name: "index_users_on_invited_by_id", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "casos", "users"
+  add_foreign_key "recursos", "casos"
 end

@@ -1,0 +1,18 @@
+.container
+  %p#notice= notice
+
+  %p
+    %b Titulo:
+    = @caso.titulo
+  %p
+    %b Problema:
+    = @caso.problema
+  %p
+    %b Ubicacion:
+    = @caso.ubicacion
+  %p
+    %b User:
+    = @caso.user.id
+  -if current_user && current_user.id == @caso.user.id
+    = link_to 'Editar', edit_caso_path(@caso)
+  = link_to 'Ver todos', casos_path

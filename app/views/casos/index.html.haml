@@ -1,0 +1,16 @@
+.container
+  %h1
+    Listing casos
+  .panel
+    .panel-body
+      - @casos.each do |caso|
+        .jumbotron
+          %h4= caso.titulo
+          .small= caso.ubicacion
+          %p= caso.user.name unless !caso.user
+          %p
+            = link_to 'Ayudar', caso, class: 'btn btn-default'
+            -if current_user && current_user.id == @caso.user.id
+              = link_to 'Edit', edit_caso_path(caso), class: 'btn btn-info'
+              = link_to 'Destroy', caso, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: 'btn btn-info'
+    = link_to 'New Caso', new_caso_path, class: 'btn btn-lg btn-success'

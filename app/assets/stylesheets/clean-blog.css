@@ -65,7 +65,6 @@ hr.small {
 }
 @media only screen and (min-width: 768px) {
   .navbar-custom {
-    background: transparent;
     border-bottom: 1px solid transparent;
   }
   .navbar-custom .navbar-brand {
@@ -77,12 +76,7 @@ hr.small {
     color: rgba(255, 255, 255, 0.8);
   }
   .navbar-custom .nav li a {
-    color: white;
     padding: 20px;
-  }
-  .navbar-custom .nav li a:hover,
-  .navbar-custom .nav li a:focus {
-    color: rgba(255, 255, 255, 0.8);
   }
 }
 @media only screen and (min-width: 1170px) {
@@ -392,4 +386,7 @@ img::-moz-selection {
 }
 body {
   webkit-tap-highlight-color: #0085a1;
+}
+header {
+    margin-bottom: 100px;
 }
