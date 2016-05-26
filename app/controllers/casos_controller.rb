@@ -1,5 +1,6 @@
 class CasosController < ApplicationController
   before_action :set_caso, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, :except => [:show, :index]
 
   # GET /casos
   # GET /casos.json
