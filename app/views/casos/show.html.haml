@@ -1,18 +1,27 @@
 .container
-  %p#notice= notice
-
-  %p
-    %b Titulo:
-    = @caso.titulo
-  %p
-    %b Problema:
-    = @caso.problema
-  %p
-    %b Ubicacion:
-    = @caso.ubicacion
-  %p
-    %b User:
-    = @caso.user.id
-  -if current_user && current_user.id == @caso.user.id
-    = link_to 'Editar', edit_caso_path(@caso)
-  = link_to 'Ver todos', casos_path
+  .col-md-8
+    %p#notice= notice
+    .small
+      %i.fa.fa-map-marker
+      = @caso.ubicacion
+      |
+      = @caso.user.name || 'Paco'
+    %h1
+      = @caso.titulo
+    %p.lead
+      = @caso.problema
+    %p
+    -if current_user && current_user.id == @caso.user.id
+      = link_to 'Editar', edit_caso_path(@caso)
+    = link_to 'Ver todos', casos_path, class: 'btn btn-default'
+  .col-md-4
+    .well
+      - @caso.recursos.each do |recurso|
+        = recurso.conseguidos
+        de
+        = recurso.objetivo
+        = recurso.nombre
+        .progress
+          .progress-bar{"aria-valuemax" => "#{recurso.objetivo}", "aria-valuemin" => "0", "aria-valuenow" => "#{recurso.conseguidos}", :role => "progressbar", :style => "width:#{recurso.conseguidos*100/recurso.objetivo}%"}
+            .small= recurso.conseguidos*100/recurso.objetivo
+            %span %
