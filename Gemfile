@@ -14,7 +14,7 @@ group :development do
   gem 'web-console', '~> 2.0'
   gem 'spring'
 end
-gem 'administrate'
+gem 'rails_admin'
 gem 'bootstrap-sass'
 gem 'devise'
 gem 'devise_invitable'
@@ -54,4 +54,3 @@ group :test do
   gem 'selenium-webdriver'
 end
 gem "nested_form"
-gem "administrate-field-nested_has_many", "~> 0.0.2"
