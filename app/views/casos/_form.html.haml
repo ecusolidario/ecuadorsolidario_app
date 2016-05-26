@@ -1,4 +1,4 @@
-= nested_form_for(@caso) do |f|
+= simple_nested_form_for(@caso), multipart: true, class: "form-horizontal" do |f|
   .form-inputs
     %p
       = f.text_field :titulo, placeholder: "Titula el caso. p.ej. Reconstrucción de colegio", class: "form-control"

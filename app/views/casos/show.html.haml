@@ -13,7 +13,6 @@
     %p
     -if current_user && current_user.id == @caso.user.id
       = link_to 'Editar', edit_caso_path(@caso)
-    = link_to 'Ver todos', casos_path, class: 'btn btn-default'
   .col-md-4
     %br
     %br
