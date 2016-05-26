@@ -80,3 +80,13 @@ section {
   @extend .btn-primary;
   @extend .btn-xs;
 }
+.navbar {
+    position: relative;
+    min-height: 100px;}
+.navbar-custom .nav li a {
+    text-transform: uppercase;
+    font-size: 14px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    line-height: 59px;
+}

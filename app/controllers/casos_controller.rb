@@ -2,10 +2,12 @@ class CasosController < ApplicationController
   before_action :set_caso, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, :except => [:show, :index]
 
-  # GET /casos
-  # GET /casos.json
   def index
     @casos = Caso.all
+  end
+
+  def mis_casos
+    @casos = Caso.where(user: current_user)
   end
 
   # GET /casos/1
@@ -70,6 +72,6 @@ class CasosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def caso_params
-      params.require(:caso).permit(:titulo, :problema, :ubicacion, :user_id)
+      params.require(:caso).permit(:titulo, :problema, :ubicacion, :user_id, recursos_attributes: [:id, :titulo, :objetivo,:conseguidos, :_destroy])
     end
 end

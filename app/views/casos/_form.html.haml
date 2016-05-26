@@ -7,10 +7,11 @@
     %p
       = f.text_field :ubicacion, placeholder: "¿Dónde se ubica el problema?", class: "form-control"
     %p
-      = f.fields_for :recursos do |task_form|
-        = task_form.text_field :nombre, placeholder: "¿Qué necesitas?"
-        = task_form.number_field :objetivo, placeholder: "Cuántas unidades?"
-        = task_form.link_to_remove "Borrar"
+      = f.fields_for :recursos do |recurso_form|
+        = recurso_form.text_field :nombre, placeholder: "¿Qué necesitas?"
+        = recurso_form.number_field :objetivo, placeholder: "Cuántas unidades?"
+        = recurso_form.hidden_field :conseguidos, value: "0"
+        = recurso_form.link_to_remove "Borrar"
     %p
       = f.link_to_add "Agregar recurso necesario", :recursos
 
