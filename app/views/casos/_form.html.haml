@@ -1,4 +1,4 @@
-= simple_nested_form_for(@caso), multipart: true, class: "form-horizontal" do |f|
+= simple_nested_form_for(@caso) do |f|
   .form-inputs
     %p
       = f.text_field :titulo, placeholder: "Titula el caso. p.ej. Reconstrucción de colegio", class: "form-control"
@@ -14,6 +14,5 @@
         = recurso_form.link_to_remove "Borrar"
     %p
       = f.link_to_add "Agregar recurso necesario", :recursos
-
   .form-actions
     = f.button :submit, class: "btn btn-default"
