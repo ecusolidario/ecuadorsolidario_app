@@ -5,7 +5,7 @@
       %i.fa.fa-map-marker
       = @caso.ubicacion
       |
-      = @caso.user.name || 'Paco'
+      = @caso.user.name || 'Nombre no introducido'
     %h1
       = @caso.titulo
     %p.lead
@@ -15,6 +15,9 @@
       = link_to 'Editar', edit_caso_path(@caso)
     = link_to 'Ver todos', casos_path, class: 'btn btn-default'
   .col-md-4
+    %br
+    %br
+    %br
     .well
       - @caso.recursos.each do |recurso|
         = recurso.conseguidos
@@ -25,3 +28,10 @@
           .progress-bar{"aria-valuemax" => "#{recurso.objetivo}", "aria-valuemin" => "0", "aria-valuenow" => "#{recurso.conseguidos}", :role => "progressbar", :style => "width:#{recurso.conseguidos*100/recurso.objetivo}%"}
             .small= recurso.conseguidos*100/recurso.objetivo
             %span %
+  .col-md-12
+    .panel
+      .panel-body
+        %h2
+          Para ayudar contacta con
+          = @caso.user.name || 'Nombre no introducido'
+          = link_to @caso.user.email, "mailto:#{@caso.user.email}"
