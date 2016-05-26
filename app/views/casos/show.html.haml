@@ -20,14 +20,15 @@
     %br
     .well
       - @caso.recursos.each do |recurso|
-        = recurso.conseguidos
-        de
-        = recurso.objetivo
-        = recurso.nombre
+        %h2= recurso.nombre
+        .small
+          Objetivo:
+          = recurso.objetivo
+        .small
+          = recurso.conseguidos
+          conseguidos
         .progress
-          .progress-bar{"aria-valuemax" => "#{recurso.objetivo}", "aria-valuemin" => "0", "aria-valuenow" => "#{recurso.conseguidos}", :role => "progressbar", :style => "width:#{recurso.conseguidos*100/recurso.objetivo}%"}
-            .small= recurso.conseguidos*100/recurso.objetivo
-            %span %
+          .progress-bar.progress-bar-success{"aria-valuemax" => "#{recurso.objetivo}", "aria-valuemin" => "0", "aria-valuenow" => "#{recurso.conseguidos}", :role => "progressbar", :style => "width:#{recurso.conseguidos*100/recurso.objetivo}%"}
   .col-md-12
     .panel
       .panel-body
