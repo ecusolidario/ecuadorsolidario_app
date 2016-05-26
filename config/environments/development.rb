@@ -32,8 +32,8 @@ Rails.application.configure do
     port: 587,
     domain: '0.0.0.0',
     authentication: "plain",
-    user_name: 'pelayo.mao@gmail.com',
-    password: 'jowfmjapsikcdjzv'
+    user_name: '',
+    password: ''
 
   }
   # ActionMailer Config
