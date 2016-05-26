@@ -6,7 +6,9 @@ class User < ActiveRecord::Base
   def set_default_role
     self.role ||= :admin
   end
-
+  def label
+    name
+  end
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :invitable, :database_authenticatable, :registerable, :confirmable,
