@@ -13,7 +13,7 @@ This application requires:
 Getting Started
 ---------------
 
-Configura el SMTP en config/enviroment/development.rb
+Configura el SMTP en secrets.yml
 
 Documentation and Support
 -------------------------
