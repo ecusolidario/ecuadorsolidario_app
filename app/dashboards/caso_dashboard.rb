@@ -7,12 +7,14 @@ class CasoDashboard < Administrate::BaseDashboard
   # Each different type represents an Administrate::Field object,
   # which determines how the attribute is displayed
   # on pages throughout the dashboard.
+
   ATTRIBUTE_TYPES = {
     user: Field::BelongsTo,
     id: Field::Number,
     titulo: Field::String,
     problema: Field::Text,
     ubicacion: Field::String,
+    recursos: Field::NestedHasMany.with_options(skip: :caso),
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
   }.freeze
@@ -37,6 +39,7 @@ class CasoDashboard < Administrate::BaseDashboard
     :titulo,
     :problema,
     :ubicacion,
+    :recursos,
     :created_at,
     :updated_at,
   ].freeze
@@ -48,7 +51,8 @@ class CasoDashboard < Administrate::BaseDashboard
     :user,
     :titulo,
     :problema,
-    :ubicacion,
+    :recursos,
+    :ubicacion
   ].freeze
 
   # Overwrite this method to customize how casos are displayed

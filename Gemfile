@@ -54,3 +54,4 @@ group :test do
   gem 'selenium-webdriver'
 end
 gem "nested_form"
+gem "administrate-field-nested_has_many", "~> 0.0.2"
