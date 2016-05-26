@@ -10,7 +10,7 @@
       = f.fields_for :recursos do |recurso_form|
         = recurso_form.text_field :nombre, placeholder: "¿Qué necesitas?"
         = recurso_form.number_field :objetivo, placeholder: "Cuántas unidades?"
-        = recurso_form.hidden_field :conseguidos, value: "0"
+        = recurso_form.hidden_field :conseguidos, value: 0
         = recurso_form.link_to_remove "Borrar"
     %p
       = f.link_to_add "Agregar recurso necesario", :recursos

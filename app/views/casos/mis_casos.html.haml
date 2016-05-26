@@ -13,10 +13,11 @@
               Objetivo:
               = recurso.objetivo
             .small
-              = recurso.conseguidos || 0
+              = recurso.conseguidos
               conseguidos
-            .progress
-              .progress-bar.progress-bar-success{"aria-valuemax" => "#{recurso.objetivo}", "aria-valuemin" => "0", "aria-valuenow" => "#{recurso.conseguidos}", :role => "progressbar", :style => "width:#{recurso.conseguidos*100/recurso.objetivo}%"}
+            - if recurso.conseguidos != nil
+              .progress
+                .progress-bar.progress-bar-success{"aria-valuemax" => "#{recurso.objetivo}", "aria-valuemin" => "0", "aria-valuenow" => "#{recurso.conseguidos}", :role => "progressbar", :style => "width:#{recurso.conseguidos*100/recurso.objetivo}%"}
           %p
             -if current_user && current_user.id == caso.user.id
               = link_to 'Editar', edit_caso_path(caso), class: 'btn btn-info'
