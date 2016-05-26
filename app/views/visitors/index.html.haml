@@ -16,10 +16,9 @@
   .row
     .col-lg-8.col-lg-offset-2.col-md-10.col-md-offset-1
       - @casos.each do |caso|
-        .col-md-4
-          .panel
-            .panel-heading
-            = link_to caso do
-              %h2.post-title
+        .col-md-6
+          = link_to caso do
+            .panel.panel-default
+              .panel-heading
                 = caso.titulo
-              = image_tag('https://placeimg.com/300/300/arch/grayscale')
+              = image_tag('https://placeimg.com/500/500/arch/grayscale')
