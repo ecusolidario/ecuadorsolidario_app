@@ -12,13 +12,13 @@
 .container
   .row
     .col-lg-8.col-lg-offset-2.col-md-10.col-md-offset-1
-      -# - @casos.each do |caso|
-      -#   .post-preview
-      -#     = link_to caso do
-      -#       %h2.post-title
-      -#         = caso.titulo
-      -#       %p.post-meta
-      -#         Publicado por
-      -#         = caso.user.name
-      -#         on
-      -#         = caso.created_at
+      - @casos.each do |caso|
+        .post-preview
+          = link_to caso do
+            %h2.post-title
+              = caso.titulo
+            %p.post-meta
+              Publicado por
+              = caso.user.name
+              on
+              = caso.created_at

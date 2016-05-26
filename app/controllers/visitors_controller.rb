@@ -1,3 +1,5 @@
 class VisitorsController < ApplicationController
-  @casos = Caso.all
+  def index
+    @casos = Caso.all
+  end
 end
