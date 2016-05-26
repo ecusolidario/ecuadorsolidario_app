@@ -32,14 +32,20 @@
   .col-md-12
     .well
       %h3
-        Escribe al afectado para ofrecerle tu ayuda
-        .fb-comments{"data-href" => "#{request.protocol}#{request.host_with_port}#{request.fullpath}", "data-num-posts" => "2", "data-width" => "100%"}        
+        Comentarios
+        .fb-comments{"data-href" => "#{request.protocol}#{request.host_with_port}#{request.fullpath}", "data-num-posts" => "2", "data-width" => "100%"}
         #fb-root
         :javascript
+          var ready;
+          ready = function() {
           (function(d, s, id) {
             var js, fjs = d.getElementsByTagName(s)[0];
             if (d.getElementById(id)) return;
             js = d.createElement(s); js.id = id;
-            js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=504323752911178";
+            js.src = "//connect.facebook.net/es_ES/all.js#xfbml=1&appId=504323752911178";
             fjs.parentNode.insertBefore(js, fjs);
           }(document, 'script', 'facebook-jssdk'));
+          };
+
+          $(document).ready(ready);
+          $(document).on('page:load', ready);
