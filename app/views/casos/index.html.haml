@@ -4,25 +4,23 @@
 
   %h1
     Casos en los que podrías ayudar
-  .panel
-    .panel-body
-      - @casos.each do |caso|
-        .col-md-12
-          .panel.panel-default
-            .panel-heading
-              = caso.titulo
-              .small= caso.ubicacion
-            .panel-body
-              Necesita:
-              - caso.recursos.each_with_index do |rec, index|
-                -if index > 0
-                  ,
-                  = rec.nombre.downcase unless !rec.nombre
-                - else
-                  = rec.nombre
+  - @casos.each do |caso|
+    .col-md-12
+      .panel.panel-primary
+        .panel-heading
+          = caso.titulo
+          .small= caso.ubicacion
+        .panel-body
+          Necesita:
+          - caso.recursos.each_with_index do |rec, index|
+            -if index > 0
+              ,
+              = rec.nombre.downcase unless !rec.nombre
+            - else
+              = rec.nombre
 
-              %p= caso.user.name unless !caso.user
-              .btn-group
-                = link_to 'Ayudar', caso, class: 'btn btn-default'
-                -if current_user && current_user.id == caso.user.id
-                  = link_to 'Editar', edit_caso_path(caso), class: 'btn btn-info'
+          %p= caso.user.name unless !caso.user
+          .btn-group
+            = link_to 'Ayudar', caso, class: 'btn btn-default'
+            -if current_user && current_user.id == caso.user.id
+              = link_to 'Editar', edit_caso_path(caso), class: 'btn btn-info'

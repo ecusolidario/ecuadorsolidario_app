@@ -12,8 +12,9 @@ This application requires:
 
 Getting Started
 ---------------
+cp config/secrets.yml.example config/secrets.yml
 
-Configura el SMTP en secrets.yml
+Configura el SMTP en secrets.yml y config/enviroment/development.rb para que funcione el registro de usuarios.
 
 bundle install
 rake db:create

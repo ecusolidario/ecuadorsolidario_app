@@ -327,6 +327,9 @@ form .row:first-child .floating-label-form-group {
   letter-spacing: 1px;
   border-radius: 0;
   padding: 15px 25px;
+  transition: background .2s;
+}
+a{  transition: color .2s;
 }
 .btn-lg {
   font-size: 16px;
@@ -334,8 +337,8 @@ form .row:first-child .floating-label-form-group {
 }
 .btn-default:hover,
 .btn-default:focus {
-  background-color: #0085a1;
-  border: 1px solid #0085a1;
+  background-color: #FF4238;
+  border: 1px solid #FF4238;
   color: white;
 }
 .pager {

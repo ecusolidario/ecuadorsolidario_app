@@ -1,6 +1,10 @@
 // import the CSS framework
+@import "bootstrap/variables";
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+$brand-primary: red;
+
 
 // make all images responsive by default
 img {
