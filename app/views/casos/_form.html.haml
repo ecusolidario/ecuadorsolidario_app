@@ -1,18 +1,37 @@
-= simple_nested_form_for(@caso) do |f|
-  .form-inputs
-    %p
-      = f.text_field :titulo, placeholder: "Titula el caso. p.ej. Reconstrucción de colegio", class: "form-control"
-    %p
-      = f.text_field :problema, placeholder: "Describe el problema", class: "form-control"
-    %p
-      = f.text_field :ubicacion, placeholder: "¿Dónde se ubica el problema?", class: "form-control"
-    %p
-      = f.fields_for :recursos do |recurso_form|
-        = recurso_form.text_field :nombre, placeholder: "¿Qué necesitas?"
-        = recurso_form.number_field :objetivo, placeholder: "Cuántas unidades?"
-        = recurso_form.hidden_field :conseguidos, value: 0
-        = recurso_form.link_to_remove "Borrar"
-    %p
-      = f.link_to_add "Agregar recurso necesario", :recursos
-  .form-actions
-    = f.button :submit, class: "btn btn-default"
+.well
+  = simple_nested_form_for(@caso) do |f|
+    .form-inputs
+      = f.fields_for :imagens do |i_form|
+        .form-inline
+          = i_form.file_field :imagen, class: "row form-control"
+          = i_form.link_to_remove "Borrar", class: 'btn btn-danger btn-xs'
+      %p
+      = f.link_to_add :imagens, class: 'btn btn-primary' do
+        %i.fa.fa-plus
+        Agregar imagen
+      %p
+        %h4 Título de tu caso
+        = f.input :titulo, placeholder: "Titula el caso. p.ej. Reconstrucción de colegio", class: "form-control", label: false
+      %p
+        %h4 Video
+        = f.input :youtubevideo, placeholder: "Enlace a video de Youtube (si tienes uno)", class: "form-control", label: false
+      %p
+        %h4 Tu historia
+        = f.input :problema, placeholder: "Describe el problema", class: "form-control",label: false
+      %p
+        %h4 ¿Dónde estás?
+        = f.text_field :ubicacion, placeholder: "¿Dónde se ubica el problema?", class: "form-control"
+      %p
+        %h4 Recursos necesarios
+        = f.fields_for :recursos do |recurso_form|
+          .form-inline
+            = recurso_form.text_field :nombre, placeholder: "¿Qué necesitas?", class: "form-control"
+            = recurso_form.number_field :objetivo, placeholder: "Cuántas unidades?", class: "form-control"
+            = recurso_form.hidden_field :conseguidos, value: 0
+            = recurso_form.link_to_remove "X", class: 'btn btn-danger btn-xs'
+      %p
+        = f.link_to_add :recursos, class: 'btn btn-primary' do
+          %i.fa.fa-plus
+          Agregar recurso necesario
+    .form-actions
+      = f.button :submit, class: "btn btn-default"

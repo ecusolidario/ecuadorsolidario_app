@@ -1,16 +1,16 @@
 / Page Header
 / Set your background image for this header on the line below.
-%header.intro-header{:style => "background:linear-gradient(rgba(9, 36, 154,0.45),rgba(9, 36, 154,0.45)), url('https://placeimg.com/1000/480/arch/grayscale');background-size:cover;"}
+%header.intro-header.animated.fadeIn{:style => "background:linear-gradient(rgba(9, 36, 154,0.45),rgba(9, 36, 154,0.45)), url('https://placeimg.com/1000/480/arch/grayscale');background-size:cover;"}
   .container
     .row
       .col-lg-8.col-lg-offset-2.col-md-10.col-md-offset-1
-        .site-heading
-          %h1 Ayuda a Ecuador
-          %hr.small
+        .site-heading.animated.fadeIn
+          %h1.animated.bounceInUp Ayuda a Ecuador
+          %hr.small.animated.bounceInDown
             %span.subheading Ecuador Solidario busca canalizar ayuda para reconstruir caso a caso los daños causados por el terremoto
           %br
-          = link_to "Ver casos", casos_path, class: 'btn btn-default'
-          = link_to "Solicita ayuda", new_caso_path, class: 'btn btn-success'
+          = link_to "Ver casos", casos_path, class: 'btn btn-default animated slideInLeft'
+          = link_to "Solicita ayuda", new_caso_path, class: 'btn btn-success  animated slideInRight'
 / Main Content
 .container
   .row
@@ -18,7 +18,7 @@
       - @casos.each do |caso|
         .col-md-6
           = link_to caso do
-            .panel.panel-default
+            .panel.panel-default.animated.bounceInUp
               .panel-heading
                 = caso.titulo
               = image_tag('https://placeimg.com/500/500/arch/grayscale')

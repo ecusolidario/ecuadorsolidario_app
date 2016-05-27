@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160526211655) do
+ActiveRecord::Schema.define(version: 20160527233149) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,11 +21,21 @@ ActiveRecord::Schema.define(version: 20160526211655) do
     t.text     "problema"
     t.string   "ubicacion"
     t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.string   "youtubevideo"
   end
 
   add_index "casos", ["user_id"], name: "index_casos_on_user_id", using: :btree
+
+  create_table "imagens", force: :cascade do |t|
+    t.string   "imagen_file_name"
+    t.string   "imagen_content_type"
+    t.integer  "imagen_file_size"
+    t.datetime "imagen_updated_at"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+  end
 
   create_table "recursos", force: :cascade do |t|
     t.string   "nombre"
