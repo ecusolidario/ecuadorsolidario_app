@@ -15,6 +15,16 @@ Getting Started
 
 Configura el SMTP en secrets.yml
 
+bundle install
+rake db:create
+
+Iniciar servidor:
+-------------------------
+
+passenger start
+
+http://0.0.0.0:300
+
 Documentation and Support
 -------------------------
 

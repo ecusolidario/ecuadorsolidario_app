@@ -32,15 +32,9 @@ Rails.application.configure do
     port: 587,
     domain: Rails.application.secrets.domain_name,
     authentication: "plain",
-<<<<<<< HEAD
     enable_starttls_auto: true,
     user_name: Rails.application.secrets.email_provider_username,
     password: Rails.application.secrets.email_provider_password
-=======
-    user_name: '',
-    password: ''
-
->>>>>>> origin/master
   }
   # ActionMailer Config
   config.action_mailer.default_url_options = { :host => '0.0.0.0:3000' }
