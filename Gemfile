@@ -54,3 +54,4 @@ group :test do
   gem 'selenium-webdriver'
 end
 gem "nested_form"
+gem 'bootstrap-growl-rails'
