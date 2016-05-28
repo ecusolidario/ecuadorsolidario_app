@@ -1,6 +1,6 @@
 class CasosController < ApplicationController
   before_action :set_caso, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, :except => [:show, :index]
+  before_action :authenticate_user!, except: [:show, :index]
 
   def index
     @casos = Caso.all
@@ -31,6 +31,11 @@ class CasosController < ApplicationController
     @caso.user_id = current_user.id
     respond_to do |format|
       if @caso.save
+        if params[:imagens]
+          params[:imagens].each do |image|
+            @caso.imagens.create(imagen: image)
+          end
+      end
         format.html { redirect_to @caso, notice: 'Se ha creado el proyecto.' }
         format.json { render :show, status: :created, location: @caso }
       else
@@ -45,6 +50,12 @@ class CasosController < ApplicationController
   def update
     respond_to do |format|
       if @caso.update(caso_params)
+        if params[:imagens]
+          params[:imagens].each do |image|
+            @caso.imagens.create(imagen: image)
+          end
+      end
+
         format.html { redirect_to @caso, notice: 'Caso actualizado.' }
         format.json { render :show, status: :ok, location: @caso }
       else
@@ -65,13 +76,14 @@ class CasosController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_caso
-      @caso = Caso.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def caso_params
-      params.require(:caso).permit(:titulo, :problema, :ubicacion, :youtubevideo, :user_id, imagens_attributes: [:id, :imagen, :_destroy], recursos_attributes: [:id, :nombre, :objetivo,:conseguidos, :_destroy])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_caso
+    @caso = Caso.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def caso_params
+    params.require(:caso).permit(:titulo, :problema, :ubicacion, :youtubevideo, :user_id, imagens_attributes: [:id, :imagen, :_destroy], recursos_attributes: [:id, :nombre, :objetivo, :conseguidos, :_destroy])
+  end
 end

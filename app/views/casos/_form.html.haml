@@ -2,14 +2,7 @@
   = simple_nested_form_for @caso, :html => { :multipart => true } do |f|
     .form-inputs
       .form-inline
-        = f.fields_for :imagens do |photo|
-          - if photo.object.new_record?
-            = photo.file_field :imagen, class: "row form-control"
-            %p
-
-      = f.link_to_add :imagens, class: 'btn btn-primary' do
-        %i.fa.fa-plus
-        Agregar imagen
+        = file_field_tag "imagens[]", type: :file, multiple: true
       %p
         %h4 Título de tu caso
         = f.input :titulo, placeholder: "Titula el caso. p.ej. Reconstrucción de colegio", class: "form-control", label: false
