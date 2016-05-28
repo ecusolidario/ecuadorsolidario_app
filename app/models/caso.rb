@@ -11,5 +11,5 @@ class Caso < ActiveRecord::Base
   def to_param
   "#{id} #{titulo}".parameterize
   end
-  after_validation :geocode
+  after_validation :geocode, :if => :address_changed?
 end
