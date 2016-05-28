@@ -51,11 +51,11 @@ test:
   template: template0
 
 production:
-  adapter:  postgresql
-  host:     localhost
-  encoding: unicode
-  database: ecuadorsolidario_app_production
-  pool:     5
-  username: ecuadorsolidario_app
-  password:
-  template: template0
+  host: <%= Rails.application.secrets[:database][:host] %>
+  adapter: postgresql
+  encoding: UTF8
+  database: <%= Rails.application.secrets[:database][:name] %>
+  pool: 10
+  reaping_frequency: 30
+  username: <%= Rails.application.secrets[:database][:username] %>
+  password: <%= Rails.application.secrets[:database][:password] %>
