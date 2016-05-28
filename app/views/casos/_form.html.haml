@@ -1,5 +1,5 @@
 .well
-  = simple_nested_form_for(@caso) do |f|
+  = simple_nested_form_for(@caso, :html => { :multipart => true }) do |f|
     .form-inputs
       = f.fields_for :imagens do |i_form|
         .form-inline
