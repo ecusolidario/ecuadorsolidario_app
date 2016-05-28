@@ -1,13 +1,11 @@
 .well
   = simple_nested_form_for @caso, :html => { :multipart => true } do |f|
     .form-inputs
-      = f.fields_for :imagens do |photo|
-        - if photo.object.new_record?
-          = photo.file_field(:imagen)
-        - else
-          = image_tag(photo.url(:thumb))
-          = photo.hidden_field :_destroy
-          = photo.link_to_remove "X"
+      = f.fields_for :imagens do |i_form|
+        .form-inline
+          = i_form.file_field :imagen, class: "row form-control"
+          = i_form.link_to_remove "Borrar", class: 'btn btn-danger btn-xs'
+      %p
       = f.link_to_add :imagens, class: 'btn btn-primary' do
         %i.fa.fa-plus
         Agregar imagen
