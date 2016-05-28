@@ -51,11 +51,15 @@ test:
   template: template0
 
 production:
-  host: <%= Rails.application.secrets.database_configuration.host %>
+  host: ec2-54-228-219-2.eu-west-1.compute.amazonaws.com
   adapter: postgresql
   encoding: UTF8
-  database: <%= Rails.application.secrets.database_configuration.name %>
+  database: ddrtf0s6s8toth
   pool: 10
   reaping_frequency: 30
   username: <%= Rails.application.secrets.database_configuration.username %>
   password: <%= Rails.application.secrets.database_configuration.password %>
+    :host: ec2-54-228-219-2.eu-west-1.compute.amazonaws.com
+    :name: ddrtf0s6s8toth
+    :username: ixnmpyohukoevs
+    :password: m2iCDzUocKv9uXo2gbV4GzUX7a
