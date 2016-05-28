@@ -57,3 +57,5 @@ gem "nested_form"
 gem 'bootstrap-growl-rails'
 gem 'paperclip', '~> 4.2.0'
 gem 'dropzonejs-rails', '~> 0.4.16'
+gem 'geocoder'
+gem 'gmaps4rails'

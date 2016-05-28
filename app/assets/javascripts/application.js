@@ -16,4 +16,5 @@
 //= require bootstrap-sprockets
 //= require jquery_nested_form
 //= require bootstrap-notify
+//= require gmaps/google
 //= require_tree .
