@@ -57,3 +57,4 @@ gem "nested_form"
 gem 'bootstrap-growl-rails'
 gem 'paperclip', '~> 4.2.0'
 gem 'dropzonejs-rails', '~> 0.4.16'
+gem 'heroku_secrets', github: 'alexpeattie/heroku_secrets'
