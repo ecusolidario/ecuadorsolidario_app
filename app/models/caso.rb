@@ -9,7 +9,7 @@ class Caso < ActiveRecord::Base
   validates_presence_of :titulo, :problema, :ubicacion
   YT_LINK_FORMAT = /\A.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([\A#\&\?]*).*/i
   if :youtubevideo
-    validates :youtubevideo, presence: false, format: YT_LINK_FORMAT
+    validates :youtubevideo, :allow_blank => true, format: YT_LINK_FORMAT
   end
   def to_param
   "#{id} #{titulo}".parameterize
