@@ -1,11 +1,8 @@
 .well
   = simple_nested_form_for @caso, :html => { :multipart => true } do |f|
-    .form-inputs
-      .form-inline
-        = file_field_tag "imagens[]", type: :file, multiple: true
-      %p
-        %h4 Título de tu caso
-        = f.input :titulo, placeholder: "Titula el caso. p.ej. Reconstrucción de colegio", class: "form-control", label: false
+    %br
+      %h4 Título de tu caso
+      = f.input :titulo, placeholder: "Titula el caso. p.ej. Reconstrucción de colegio", class: "form-control", label: false
       %p
         %h4 Video
         = f.input :youtubevideo, placeholder: "Enlace a video de Youtube (si tienes uno)", class: "form-control", label: false
@@ -27,5 +24,19 @@
         = f.link_to_add :recursos, class: 'btn btn-primary' do
           %i.fa.fa-plus
           Agregar recurso necesario
+    %h4
+      Agregar imágenes
+    .row.well
+      = file_field_tag "imagens[]", type: :file, multiple: true, class: 'small well'
+      .form-inputs
+        .form-inline
+          - if @caso.imagens
+            - @caso.imagens.each do |foto|
+              .col-md-2
+                .well
+                  = f.simple_fields_for :imagens, foto do |image_fields|
+                    = image_tag foto.imagen.url(:thumb)
+                    = image_fields.check_box :_destroy
+                    .small Borrar imagen
     .form-actions
       = f.button :submit, class: "btn btn-default"

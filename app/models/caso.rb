@@ -3,7 +3,8 @@ class Caso < ActiveRecord::Base
   has_many :imagens, :dependent => :destroy
   has_many :recursos, :dependent => :destroy
 
-  accepts_nested_attributes_for :recursos, :imagens
+  accepts_nested_attributes_for :recursos
+  accepts_nested_attributes_for :imagens, :allow_destroy => true, limit: 5
 
   geocoded_by :ubicacion
   validates_presence_of :titulo, :problema, :ubicacion

@@ -390,3 +390,6 @@ header {
     margin-bottom: 100px;
 }
 .mapa{width: 100%;height:350px;margin-top:20px;margin-bottom:20px}
+#slidercaso .item{height:450px}
+h1.captionslider {position:absolute;top:20%;width:100%;text-align:center;color:#fff;z-index: 9999999}
+.carousel-control{padding-top:15%}
