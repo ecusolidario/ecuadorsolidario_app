@@ -393,3 +393,6 @@ header {
 #slidercaso .item{height:450px}
 h1.captionslider {position:absolute;top:20%;width:100%;text-align:center;color:#fff;z-index: 9999999}
 .carousel-control{padding-top:15%}
+.carousel {
+    min-height: 450px!important;
+}
