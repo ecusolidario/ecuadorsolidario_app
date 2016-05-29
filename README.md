@@ -24,7 +24,7 @@ Iniciar servidor:
 
 passenger start
 
-http://0.0.0.0:300
+http://0.0.0.0:3000
 
 Colaborar:
 ----------
