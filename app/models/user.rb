@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   after_initialize :set_default_role, :if => :new_record?
 
   def set_default_role
-    self.role ||= :admin
+    self.role ||= :user
   end
   def label
     name
