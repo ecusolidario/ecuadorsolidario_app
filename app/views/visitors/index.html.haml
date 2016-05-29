@@ -21,4 +21,13 @@
             .panel.panel-default.animated.bounceInUp
               .panel-heading
                 = caso.titulo
-              = image_tag('https://placeimg.com/500/500/arch/grayscale')
+              - unless !caso.imagens.first
+                = image_tag(caso.imagens.first.imagen.url(:thumb))
+              .panel-body
+                Necesita:
+                - caso.recursos.each_with_index do |rec, index|
+                  -if index > 0
+                    ,
+                    = rec.nombre.downcase unless !rec.nombre
+                  - else
+                    = rec.nombre
