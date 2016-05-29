@@ -1,11 +1,11 @@
-- if @caso.imagens.count >= 1
+- if @caso.imagens.count >= 1 || @caso.youtubevideo
   #slidercaso.carousel.slide{"data-ride" => "carousel"}
     %h1.captionslider
       = @caso.titulo
     .carousel-inner{:role => "listbox"}
       - if @caso.youtubevideo
         .item.active
-          %iframe{:frameborder => "0", :height => "390", :src => @caso.youtubevideo, :title => "YouTube video player", :type => "text/html", :width => "640"}      - @caso.imagens.each_with_index do |imagen, index|
+          %iframe{:frameborder => "0", :height => "390", :src => @caso.youtubevideo, :title => "YouTube video player", :type => "text/html", :width => "640"}
       - @caso.imagens.each_with_index do |imagen, index|
         - if index >= 1
           .item{style: "background:linear-gradient(rgba(9, 36, 154,0.45),rgba(9, 36, 154,0.45))"}
