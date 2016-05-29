@@ -26,20 +26,7 @@ passenger start
 
 http://0.0.0.0:300
 
-Documentation and Support
--------------------------
+Colaborar:
+----------
 
-Issues
--------------
-
-Similar Projects
-----------------
-
-Contributing
-------------
-
-Credits
--------
-
-License
--------
+Para colaborar consulta los issues, ¡si hay alguno que vayas a desarrollar, comenta para que no se duplique trabajo!
