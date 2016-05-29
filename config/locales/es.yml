@@ -171,6 +171,7 @@ es:
   activerecord:
     attributes:
       user:
+        name: Nombre
         current_password: Contraseña actual
         email: Correo electrónico
         password: Contraseña
@@ -249,7 +250,8 @@ es:
         update: Actualizar
         we_need_your_current_password_to_confirm_your_changes: necesitamos su contraseña actual para confirmar los cambios
       new:
-        sign_up: Registrarse
+        sign_up: Regístrate
+        send: Enviar
       signed_up: Bienvenido. Tu cuenta fue creada.
       signed_up_but_inactive: Tu cuenta ha sido creada correctamente. Sin embargo, no hemos podido iniciar la sesión porque tu cuenta aún no está activada.
       signed_up_but_locked: Tu cuenta ha sido creada correctamente. Sin embargo, no hemos podido iniciar la sesión porque que tu cuenta está bloqueada.
