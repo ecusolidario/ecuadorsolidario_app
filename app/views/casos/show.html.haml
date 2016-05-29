@@ -1,4 +1,4 @@
--if @caso.imagens
+- if @caso.imagens.count >= 1
   #slidercaso.carousel.slide{"data-ride" => "carousel"}
     %h1.captionslider
       = @caso.titulo
@@ -15,6 +15,9 @@
     %a.right.carousel-control{"data-slide" => "next", :href => "#slidercaso", :role => "button"}
       %span.fa.fa-chevron-right.fa-4x{"aria-hidden" => "true"}
       %span.sr-only Next
+- else
+  .container
+    %h1= @caso.titulo
 .container
   .col-md-8
     %p#notice= notice
