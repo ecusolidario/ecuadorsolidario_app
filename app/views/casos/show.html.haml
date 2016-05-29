@@ -3,12 +3,18 @@
     %h1.captionslider
       = @caso.titulo
     .carousel-inner{:role => "listbox"}
+      - if @caso.youtubevideo
+        .item.active
+          %iframe{:frameborder => "0", :height => "390", :src => @caso.youtubevideo, :title => "YouTube video player", :type => "text/html", :width => "640"}      - @caso.imagens.each_with_index do |imagen, index|
       - @caso.imagens.each_with_index do |imagen, index|
         - if index >= 1
           .item{style: "background:linear-gradient(rgba(9, 36, 154,0.45),rgba(9, 36, 154,0.45))"}
         - else
-          .item.active{style: "background:linear-gradient(rgba(9, 36, 154,0.45),rgba(9, 36, 154,0.45))"}
-            =image_tag imagen.imagen.url(:thumb)
+          - if @caso.youtubevideo
+            .item{style: "background:linear-gradient(rgba(9, 36, 154,0.45),rgba(9, 36, 154,0.45))"}
+          - else
+            .item.active{style: "background:linear-gradient(rgba(9, 36, 154,0.45),rgba(9, 36, 154,0.45))"}
+              =image_tag imagen.imagen.url(:thumb)
     %a.left.carousel-control{"data-slide" => "prev", :href => "#slidercaso", :role => "button"}
       %span.fa.fa-chevron-left.fa-4x{"aria-hidden" => "true"}
       %span.sr-only Previous
@@ -61,6 +67,22 @@
 :javascript
   var ready;
   ready = function() {
+  function callPlayer(frame_id, func, args) {
+    if (window.jQuery && frame_id instanceof jQuery) frame_id = frame_id.get(0).id;
+    var iframe = document.getElementById(frame_id);
+    if (iframe && iframe.tagName.toUpperCase() != 'IFRAME') {
+        iframe = iframe.getElementsByTagName('iframe')[0];
+    }
+    if (iframe) {
+        // Frame exists,
+        iframe.contentWindow.postMessage(JSON.stringify({
+            "event": "command",
+            "func": func,
+            "args": args || [],
+            "id": frame_id
+        }), "*");
+    }
+  };
   (function(d, s, id) {
     var js, fjs = d.getElementsByTagName(s)[0];
     if (d.getElementById(id)) return;
