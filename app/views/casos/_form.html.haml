@@ -2,16 +2,18 @@
   = simple_nested_form_for @caso, :html => { :multipart => true } do |f|
     %br
       %h4 Título de tu caso
+      .small Que sintetize lo que necesitas.
       = f.input :titulo, placeholder: "Titula el caso. p.ej. Reconstrucción de colegio", class: "form-control", label: false
       %p
         %h4 Video
         = f.input :youtubevideo, placeholder: "Enlace a video de Youtube (si tienes uno)", class: "form-control", label: false
       %p
         %h4 Tu historia
+        .small Cuenta tu problema, y cómo se puede contactar contigo.
         = f.input :problema, placeholder: "Describe el problema", class: "form-control",label: false
       %p
         %h4 ¿Dónde estás?
-        = f.text_field :ubicacion, placeholder: "¿Dónde se ubica el problema?", class: "form-control"
+        = f.text_field :ubicacion, placeholder: "Calle, Ciudad, Región", class: "form-control"
       %p
         %h4 Recursos necesarios
         = f.fields_for :recursos do |recurso_form|
@@ -38,5 +40,9 @@
                     = image_tag foto.imagen.url(:thumb)
                     = image_fields.check_box :_destroy
                     .small Borrar imagen
-    .form-actions
-      = f.button :submit, class: "btn btn-default"
+    .form-actions.text-right
+      = f.button :submit, class: "btn btn-primary btn-lg enviar"
+:javascript
+  $( ".enviar" ).click(function() {
+    $('#caso_ubicacion').val($('#caso_ubicacion').val() + ', Ecuador');
+  });

@@ -18,10 +18,3 @@
     #contenido= yield
     = render 'layouts/footer'
     %link{:href => "https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css", :rel => "stylesheet"}
-:javascript
-  document.addEventListener('page:change', function() {
-          document.getElementById('contenido').className += 'animated fadeIn';
-  });
-  document.addEventListener('page:fetch', function() {
-          document.getElementById('contenido').className += 'animated fadeOut';
-  });
