@@ -1,0 +1,13 @@
+<div class="container">
+<h2><%= "Invita a un amigo a registrarse" %></h2>
+
+<%= simple_form_for resource, as: resource_name, url: invitation_path(resource_name), html: { method: :post} do |f| %>
+  <%= devise_error_messages! %>
+
+<% resource.class.invite_key_fields.each do |field| -%>
+  <%= f.input field %>
+<% end -%>
+
+<%= f.button :submit, "Enviar", class: 'btn btn-success btn-lg' %>
+<% end %>
+</div>
