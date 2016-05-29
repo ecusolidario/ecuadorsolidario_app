@@ -59,3 +59,4 @@ gem 'paperclip', '~> 4.2.0'
 gem 'geocoder'
 gem 'gmaps4rails'
 gem 'jquery-turbolinks'
+gem 'rails_12factor', group: :production
