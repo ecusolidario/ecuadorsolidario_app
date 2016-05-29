@@ -1,11 +1,13 @@
 - if @caso.imagens.count >= 1 || @caso.youtubevideo
   #slidercaso.carousel.slide{"data-ride" => "carousel"}
-    %h1.captionslider
-      = @caso.titulo
+    -if @caso.youtubevideo
+    - else
+      %h1.captionslider
+        = @caso.titulo
     .carousel-inner{:role => "listbox"}
       - if @caso.youtubevideo
         .item.active
-          %iframe{:frameborder => "0", :height => "390", :src => @caso.youtubevideo, :title => "YouTube video player", :type => "text/html", :width => "640"}
+          = youtube_embed(@caso.youtubevideo).html_safe
       - @caso.imagens.each_with_index do |imagen, index|
         - if index >= 1
           .item{style: "background:linear-gradient(rgba(9, 36, 154,0.45),rgba(9, 36, 154,0.45))"}
@@ -21,6 +23,9 @@
     %a.right.carousel-control{"data-slide" => "next", :href => "#slidercaso", :role => "button"}
       %span.fa.fa-chevron-right.fa-4x{"aria-hidden" => "true"}
       %span.sr-only Next
+  - if @caso.youtubevideo
+    .container
+      %h1= @caso.titulo
 - else
   .container
     %h1= @caso.titulo

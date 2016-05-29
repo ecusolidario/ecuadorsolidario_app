@@ -12,6 +12,7 @@ class Caso < ActiveRecord::Base
   if :youtubevideo
     validates :youtubevideo, :allow_blank => true, format: YT_LINK_FORMAT
   end
+
   def to_param
   "#{id} #{titulo}".parameterize
   end
