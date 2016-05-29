@@ -26,8 +26,9 @@
       = @caso.ubicacion
       |
       = @caso.user.name || 'Nombre no introducido'
-    -# %h1
-    -#   = @caso.titulo
+    -if !@caso.imagens
+      %h1
+        = @caso.titulo
     %p.lead
       = @caso.problema
     %p
