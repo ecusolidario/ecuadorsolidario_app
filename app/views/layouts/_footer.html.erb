@@ -31,7 +31,10 @@
                         </a>
                     </li>
                 </ul>
-                <p class="copyright text-muted">Ecuador Solidario</p>
+                <p class="copyright text-muted">Ecuador Solidario <%= link_to 'Contactar', page_path('contact') %></p>
+                <p class="copyright text-center"><%= link_to 'Invita a un amigo a participar', new_user_invitation_path, class: 'btn btn-default' %></p>
+
+
             </div>
         </div>
     </div>

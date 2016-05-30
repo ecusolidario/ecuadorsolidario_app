@@ -60,13 +60,16 @@
           conseguidos
         .progress
           .progress-bar.progress-bar-success{"aria-valuemax" => "#{recurso.objetivo}", "aria-valuemin" => "0", "aria-valuenow" => "#{recurso.conseguidos}", :role => "progressbar", :style => "width:#{recurso.conseguidos*100/recurso.objetivo}%"}
+    Manda un mensaje privado a #{@caso.user.name} para ayudarle.
+    %p= link_to 'Escribir', new_message_path(:recipients => @caso.user), class: 'btn btn-lg btn-primary'
+
 .mapa
   #map{:style => "width: 100%; height: 350px;"}
 %hr
 .container
   .well
     %h3
-      Deja un mensaje si quieres colaborar.
+      Comentarios.
       .fb-comments{"data-href" => "#{request.protocol}#{request.host_with_port}#{request.fullpath}", "data-num-posts" => "2", "data-width" => "100%"}
       #fb-root
 :javascript

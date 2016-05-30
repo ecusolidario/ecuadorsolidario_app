@@ -28,7 +28,13 @@ h6 {
 a {
   color: #09249A;
 }
-
+.navbar-custom .nav li a {
+    text-transform: uppercase;
+    font-size: 14px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    line-height: 28px;
+}
 a:hover,
 a:focus {
   color: #586ED0;
@@ -396,4 +402,46 @@ h1.captionslider {position:absolute;top:20%;width:100%;text-align:center;color:#
 .carousel-control{padding-top:15%}
 .carousel {
     min-height: 450px!important;
+}
+.messages {
+  max-height: 400px;
+  overflow-y: auto;
+  margin-bottom: 1em;
+  margin-top: 1em;
+}
+.label {
+  display: inline;
+  padding: .2em .6em .3em;
+  font-size: 55%;
+  font-weight: bold;
+  line-height: 1;
+  color: white;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: top;
+  border-radius: 12em;
+}
+.navbar-default .navbar-collapse, .navbar-default .navbar-form {
+    border: none;
+}
+.navbar-toggle .icon-bar {
+    display: block;
+    width: 22px;
+    height: 4px;
+    border-radius: 3px;
+}
+.navbar-toggle {
+    position: relative;
+    float: right;
+    margin-right: 15px;
+    margin-top: 18px;
+    background-color: transparent;
+    border: none;
+}
+@media (min-width: 768px){
+.navbar-right {
+    float: right !important;
+    margin-right: -15px;
+    padding: 14px;
+}
 }

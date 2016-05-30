@@ -1,4 +1,7 @@
 class MensajesController < ApplicationController
+
+  # estos mensajes son los del formulario de la sección Contacto
+
   def new
   @mensaje = Mensaje.new
 end

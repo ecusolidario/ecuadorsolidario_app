@@ -16,4 +16,5 @@
 //= require jquery_nested_form
 //= require bootstrap-notify
 //= require gmaps/google
+//= require chosen-jquery
 //= require_tree .

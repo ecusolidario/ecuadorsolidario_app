@@ -1,0 +1,13 @@
+.container
+  .panel.panel-primary
+    .panel-heading
+      Nuevo mensaje
+    .panel-body
+      = form_tag messages_path, method: :post do
+        .form-group
+          = label_tag 'message[subject]', 'Recurso que vas a donar'
+          = text_field_tag 'message[subject]', nil, class: 'form-control', required: true
+        .form-group
+          = label_tag 'message[body]', 'Indícale a ' + User.find(params[:recipients]).name + ' cómo puedes ayudarle'
+          = text_area_tag 'message[body]', nil, cols: 3, class: 'form-control', required: true
+        = submit_tag 'Enviar', class: 'btn btn-primary'

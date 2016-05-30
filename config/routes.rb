@@ -8,4 +8,18 @@ Rails.application.routes.draw do
   resources :users
   get 'contact', to: 'mensajes#new', as: 'contact'
   post 'contact', to: 'mensajes#create'
+  resources :conversations, only: [:index, :show, :destroy] do
+    member do
+      post :restore
+    end
+    member do
+      post :mark_as_read
+    end
+    collection do
+      delete :empty_trash
+    end
+
+  end
+  resources :messages, only: [:new, :create]
+
 end
