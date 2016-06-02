@@ -23,7 +23,7 @@
                 = caso.titulo
               - unless !caso.imagens.first
                 = image_tag(caso.imagens.first.imagen.url(:thumb))
-              .panel-body
+              .panel-body.small
                 Necesita:
                 - caso.recursos.each_with_index do |rec, index|
                   -if index > 0
@@ -31,3 +31,9 @@
                     = rec.nombre.downcase unless !rec.nombre
                   - else
                     = rec.nombre
+                %hr
+                .progress
+                  .progress-bar.progress-bar-success{"aria-valuemax" => "100", "aria-valuemin" => "0", "aria-valuenow" => "#{caso.progreso}", :role => "progressbar", :style => "width:#{caso.progreso}%"}
+                  %span.small= caso.progreso
+                  %span.small= raw('%')
+                  %span.small conseguido

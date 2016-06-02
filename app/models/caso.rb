@@ -3,6 +3,19 @@ class Caso < ActiveRecord::Base
   has_many :imagens, :dependent => :destroy
   has_many :recursos, :dependent => :destroy
 
+  def progreso
+    @conseguidos = 0
+    @objetivo = 0
+    @recursosnumero = self.recursos.count
+    self.recursos.each do |recurso|
+      if recurso.conseguidos >= 1
+        @cantidad += recurso.conseguidos
+      end
+      @objetivo += recurso.objetivo
+    end
+    @conseguidos*100/@objetivo
+  end
+
   accepts_nested_attributes_for :recursos
   accepts_nested_attributes_for :imagens, :allow_destroy => true, limit: 5
 
