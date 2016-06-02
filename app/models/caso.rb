@@ -9,7 +9,7 @@ class Caso < ActiveRecord::Base
     @recursosnumero = self.recursos.count
     self.recursos.each do |recurso|
       if recurso.conseguidos >= 1
-        @cantidad += recurso.conseguidos
+        @conseguidos += recurso.conseguidos
       end
       @objetivo += recurso.objetivo
     end
