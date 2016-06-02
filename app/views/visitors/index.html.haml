@@ -34,6 +34,7 @@
                 %hr
                 .progress
                   .progress-bar.progress-bar-success{"aria-valuemax" => "100", "aria-valuemin" => "0", "aria-valuenow" => "#{caso.progreso}", :role => "progressbar", :style => "width:#{caso.progreso}%"}
-                  %span.small= caso.progreso
-                  %span.small= raw('%')
-                  %span.small conseguido
+                  .progreso
+                    %span.small= caso.progreso
+                    %span.small= raw('%')
+                    %span.small conseguido
