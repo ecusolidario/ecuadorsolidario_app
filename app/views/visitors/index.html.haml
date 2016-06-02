@@ -14,9 +14,9 @@
 / Main Content
 .container
   .row
-    .col-lg-8.col-lg-offset-2.col-md-10.col-md-offset-1
+    .col-lg-10.col-lg-offset-1.col-md-12
       - @casos.each do |caso|
-        .col-md-6
+        .col-md-3
           = link_to caso do
             .panel.panel-default.animated.bounceInUp
               .panel-heading
