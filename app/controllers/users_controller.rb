@@ -25,6 +25,19 @@ class UsersController < ApplicationController
     redirect_to users_path, :notice => "User deleted."
   end
 
+  def create_via_facebook
+    user = User.new
+    user.name = params[:user][:name]
+    user.email = params[:user][:email]
+    user.encrypted_password = "ecu_#{params[:user][:id]}"
+    if user.save
+      @status = 200
+    else
+      @status = 400
+    end
+    render json: @status, layout: false
+  end
+
   private
 
   def admin_only
