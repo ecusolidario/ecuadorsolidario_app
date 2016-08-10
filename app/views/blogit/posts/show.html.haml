@@ -1,0 +1,25 @@
+- title @post.title
+- description @post.description.to_s
+.container
+  .panel.panel-default
+    .panel-heading
+      = content_tag(:article, id: "blogit_post_#{@post.id}", class: "blogit_post") do
+        %h1
+          = render "blogit/posts/post_head", post: @post
+        = render "blogit/posts/blogger_information", post: @post
+    -# .panel-back
+    -#   - if @post.gallery
+    -#     .carousel-inner{:role => "listbox"}
+    -#       .item.active
+    -#         - @post.gallery.pictures.where(:destacada => true).each do |imagen|
+    -#           = image_tag imagen.image.url(:original)
+    -#       - @post.gallery.pictures.where(:destacada => false).each do |imagen|
+    -#         .item= image_tag imagen.image.url(:original)
+    .panel-body.col-lg-8
+      = format_content(@post.body)
+    = render "blogit/posts/tags", post: @post
+    .panel-footer
+      = share_bar_for_post @post
+      = render "blogit/posts/comments_count",                               |
+        post: post if defined?(show_comments_count) and show_comments_count |
+      = comments_for_post @post

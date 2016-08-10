@@ -1,0 +1,25 @@
+.container
+  %br
+  .row
+    .col-md-6
+      .panel.panel-primary
+        .panel-heading Mensajes
+        .panel-body
+          %div
+            - @conversations.each do |conversation|
+              .well
+                - if conversation.sender_id == current_user.id ||      conversation.recipient_id == current_user.id
+                  - if conversation.sender_id == current_user.id
+                    - recipient = User.find(conversation.recipient_id)
+                  - else
+                    - recipient = User.find(conversation.sender_id)
+                  = link_to recipient.name,   conversation_messages_path(conversation)
+    .col-md-6
+      .panel.panel-info
+        .panel-heading Usuarios
+        .panel-body
+          - @users.each do |user|
+            - if user.id != current_user.id
+              .well
+                = user.name
+                = link_to 'Envíar un mensaje', conversations_path(sender_id: current_user.id, recipient_id: user.id), method: 'post'

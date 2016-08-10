@@ -1,0 +1,19 @@
+.container
+  %h1
+    Blog
+  - if params[:tag]
+    %h2.blogit_header--page
+      = t(:showing_posts_tagged_with, scope: "blogit.posts", tag: params[:tag])
+  .blogit_posts_list
+    - if @posts.any?
+      = render partial: "blogit/posts/post",                                              |
+        collection: @posts,                                                               |
+        spacer_template: "blog_post_spacer",                                              |
+        locals: {                                                                         |
+          show_comments_count: (Blogit.configuration.include_comments == :active_records) |
+        }                                                                                 |
+    - else
+      = render partial: "blogit/posts/empty"
+  = render "pagination"
+  :css
+    .panel {overflow: hidden;}

@@ -1,0 +1,25 @@
+.container
+  %h1
+    Casos que has publicado
+  .panel
+    .panel-body
+      - @casos.each do |caso|
+        .jumbotron
+          %h4= caso.titulo
+          .small= caso.ubicacion
+          - caso.recursos.each do |recurso|
+            %h2= recurso.nombre
+            .small
+              Objetivo:
+              = recurso.objetivo
+            .small
+              = recurso.conseguidos
+              conseguidos
+            - if recurso.conseguidos != nil
+              .progress
+                .progress-bar.progress-bar-success{"aria-valuemax" => "#{recurso.objetivo}", "aria-valuemin" => "0", "aria-valuenow" => "#{recurso.conseguidos}", :role => "progressbar", :style => "width:#{recurso.conseguidos*100/recurso.objetivo}%"}
+          %p
+            -if current_user && current_user.id == caso.user.id
+              = link_to 'Editar', edit_caso_path(caso), class: 'btn btn-info'
+              = link_to 'Borrar', caso, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: 'btn btn-danger'
+    = link_to 'Nuevo caso', new_caso_path, class: 'btn btn-lg btn-success'

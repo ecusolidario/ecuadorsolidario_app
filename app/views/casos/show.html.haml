@@ -1,0 +1,134 @@
+- if @caso.imagens.count >= 1 || @caso.youtubevideo
+  #slidercaso.carousel.slide{"data-ride" => "carousel"}
+    -if @caso.youtubevideo
+    - else
+      %h1.captionslider
+        = @caso.titulo
+    .carousel-inner{:role => "listbox"}
+      - if @caso.youtubevideo
+        .item.active
+          = youtube_embed(@caso.youtubevideo).html_safe
+      - @caso.imagens.each_with_index do |imagen, index|
+        - if index >= 1
+          .item{style: "background:linear-gradient(rgba(9, 36, 154,0.45),rgba(9, 36, 154,0.45))"}
+            =image_tag imagen.imagen.url(:medium)
+        - else
+          - if @caso.youtubevideo
+            .item{style: "background:linear-gradient(rgba(9, 36, 154,0.45),rgba(9, 36, 154,0.45))"}
+              =image_tag imagen.imagen.url(:medium)
+          - else
+            .item.active{style: "background:linear-gradient(rgba(9, 36, 154,0.45),rgba(9, 36, 154,0.45))"}
+              =image_tag imagen.imagen.url(:medium)
+    %a.left.carousel-control{"data-slide" => "prev", :href => "#slidercaso", :role => "button"}
+      %span.fa.fa-chevron-left.fa-4x{"aria-hidden" => "true"}
+      %span.sr-only Previous
+    %a.right.carousel-control{"data-slide" => "next", :href => "#slidercaso", :role => "button"}
+      %span.fa.fa-chevron-right.fa-4x{"aria-hidden" => "true"}
+      %span.sr-only Next
+  - if @caso.youtubevideo
+    .container
+      %h1= @caso.titulo
+- else
+  .container
+    %h1= @caso.titulo
+.container
+  .col-md-8
+    %p#notice= notice
+    .small
+      %i.fa.fa-map-marker
+      = @caso.ubicacion
+      |
+      %i.fa.fa-user
+      = @caso.user.name || 'Nombre no introducido'
+    -if !@caso.imagens
+      %h1
+        = @caso.titulo
+    %p.lead
+      = @caso.problema
+    %p
+    -if current_user && current_user.id == @caso.user.id
+      = link_to 'Editar', edit_caso_path(@caso)
+  .col-md-4
+    %br
+    %br
+    %br
+    .well
+      - @caso.recursos.each do |recurso|
+        %h2= recurso.nombre
+        .small
+          Objetivo:
+          = recurso.objetivo
+        .small
+          = recurso.conseguidos
+          conseguidos
+        .progress
+          .progress-bar.progress-bar-success{"aria-valuemax" => "#{recurso.objetivo}", "aria-valuemin" => "0", "aria-valuenow" => "#{recurso.conseguidos}", :role => "progressbar", :style => "width:#{recurso.conseguidos*100/recurso.objetivo}%"}
+.container
+  .jumbotron
+    - if user_signed_in?
+      .row
+        .col-md-8
+          %h2
+            Escribe a
+            = @caso.user.name
+          = link_to 'Escribir mensaje', conversations_path(sender_id: current_user.id, recipient_id: @caso.user.id), method: 'post', class: 'btn btn-lg btn-primary'
+        .col-md-4
+          %h2 Email
+          = @caso.user.email
+    - else
+      Tienes que estar registrado para poder contactar y ayudar:
+      = form_tag session_path(:user), class: 'form-inline' do
+        %p
+          = text_field_tag 'user[email]', "", class: 'form-control'
+          = password_field_tag 'user[password]', "", class: 'form-control'
+
+        %button.btn.btn-default Acceder
+        = link_to 'Registro', new_user_registration_path, class: 'btn btn-success pull-right'
+
+.mapa
+  #map{:style => "width: 100%; height: 350px;"}
+%hr
+.container
+  .well
+    %h3
+      Comentarios.
+      .fb-comments{"data-href" => "#{request.protocol}#{request.host_with_port}#{request.fullpath}", "data-num-posts" => "2", "data-width" => "100%"}
+      #fb-root
+:javascript
+  var ready;
+  ready = function() {
+  function callPlayer(frame_id, func, args) {
+    if (window.jQuery && frame_id instanceof jQuery) frame_id = frame_id.get(0).id;
+    var iframe = document.getElementById(frame_id);
+    if (iframe && iframe.tagName.toUpperCase() != 'IFRAME') {
+        iframe = iframe.getElementsByTagName('iframe')[0];
+    }
+    if (iframe) {
+        // Frame exists,
+        iframe.contentWindow.postMessage(JSON.stringify({
+            "event": "command",
+            "func": func,
+            "args": args || [],
+            "id": frame_id
+        }), "*");
+    }
+  };
+  var mapStyle =[{"featureType":"all","elementType":"geometry","stylers":[{"color":"#ff0000"}]},{"featureType":"all","elementType":"geometry.fill","stylers":[{"visibility":"on"},{"color":"#F8F8F8"}]},{"featureType":"all","elementType":"geometry.stroke","stylers":[{"visibility":"on"},{"color":"#939393"},{"weight":"0.01"},{"lightness":"53"}]},{"featureType":"all","elementType":"labels","stylers":[{"visibility":"on"},{"weight":"5.75"}]},{"featureType":"administrative","elementType":"geometry.stroke","stylers":[{"weight":"0.01"}]},{"featureType":"landscape","elementType":"geometry.stroke","stylers":[{"weight":"0.01"}]},{"featureType":"poi","elementType":"geometry.stroke","stylers":[{"weight":"0.01"}]},{"featureType":"road","elementType":"geometry.fill","stylers":[{"visibility":"simplified"}]},{"featureType":"road","elementType":"geometry.stroke","stylers":[{"weight":"0.01"}]},{"featureType":"road","elementType":"labels.text.stroke","stylers":[{"weight":"0.01"}]},{"featureType":"road.highway","elementType":"geometry.stroke","stylers":[{"visibility":"on"},{"color":"#ffffff"},{"weight":"0.01"}]},{"featureType":"road.highway","elementType":"labels.text.stroke","stylers":[{"weight":"1.00"}]},{"featureType":"transit","elementType":"geometry.stroke","stylers":[{"visibility":"on"},{"color":"#000000"},{"weight":"0.01"}]},{"featureType":"water","elementType":"all","stylers":[{"color":"#FFEB00"}]},{"featureType":"water","elementType":"geometry.fill","stylers":[{"visibility":"on"},{"saturation":"-6"},{"lightness":"100"},{"gamma":"10.00"},{"weight":"0.01"},{"color":"#09249A"}]},{"featureType":"water","elementType":"geometry.stroke","stylers":[{"weight":"0.01"}]}];
+  handler = Gmaps.build('Google');
+  handler.buildMap({ provider: {draggable: false,scrollwheel: false,styles:mapStyle}, internal: {id: 'map'}}, function(){
+    markers = handler.addMarkers([
+      {
+        "lat": '#{@caso.latitude}',
+        "lng": '#{@caso.longitude}',
+        "infowindow": "#{@caso.ubicacion}"
+      }
+    ]);
+    handler.bounds.extendWith(markers);
+    handler.fitMapToBounds();
+    handler.getMap().setZoom(14);
+  });
+  };
+  $(document).ready(ready);
+  $(document).on('page:load', ready);
+:css
+  .item img{width:100%;height:auto}

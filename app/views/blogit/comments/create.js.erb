@@ -1,0 +1,7 @@
+var $form = $("form.blogit_form");
+<% if @comment.save %>
+  $(".blogit_comments_list").append("<%= escape_javascript(render(@comment)) %>");
+  $form.get(0).reset();
+<% else %>
+  $form.html("<%= escape_javascript(render(partial:'form', locals: { post: @comment.post, comment: @comment })) %>");
+<% end %>

@@ -1,0 +1,9 @@
+= content_tag(:div, id: "blogit_comment_#{comment.id}", class: " panel panel-body") do
+  .blogit_comment__name
+    = name_for_comment(comment)
+  .blogit_comment__body
+    = format_content(comment.body.to_s)
+  .blogit_comment__created_at
+    = t(:posted_on, scope: 'blogit.comments')
+    = time_tag(comment.created_at, format: blogit_conf.datetime_format)
+- end if comment.persisted?

@@ -1,0 +1,4 @@
+.blogit_comments_list
+  %h3.blogit_comments_list__header.blogit_header--section= t('.comments')
+  = render post.comments
+= render partial: "blogit/comments/form", locals: { post: post, comment: comment }

@@ -1,0 +1,34 @@
+.panel
+  .panel-body
+    = form_for [post, comment], remote: blogit_conf.ajax_comments,
+      html: { class: "blogit_form" } do |f|
+      %h3.blogit_form__header
+        = t :leave_a_comment, scope: 'blogit.comments'
+      = field class: "hidden" do
+        = f.label :nickname, "Nickname (Hide me using CSS)",
+          class: "blogit_form__label"
+        = f.text_field :nickname, class: "form-control"
+      = field do
+        = f.label :name, t(:name, scope: 'blogit.comments'),
+          class: "blogit_form__label"
+        = f.text_field :name, class: "form-control", required: true
+        = errors_on(comment, :name)
+      = field do
+        = f.label :email, t(:email_never_displayed, scope: 'blogit.comments'),
+          class: "blogit_form__label"
+        = f.email_field :email, class: "form-control", required: true
+        = errors_on(comment, :email)
+      = field do
+        = f.label :website, t(:your_website, scope: 'blogit.comments'),
+          class: "blogit_form__label"
+        = f.url_field :website, class: "form-control"
+        = errors_on(comment, :website)
+      = field do
+        = f.label :body, t(:your_comment, scope: 'blogit.comments'),
+          class: "blogit_form__label"
+        = f.text_area :body, required: true,
+          class: "form-control form-control--textarea"
+        = errors_on(comment, :body)
+      = actions do
+        = f.submit t(:add_comment, scope: 'blogit.comments'),
+          disable_with: t(:adding_comment, scope: 'blogit.comments'), :class => "btn btn-primary" 

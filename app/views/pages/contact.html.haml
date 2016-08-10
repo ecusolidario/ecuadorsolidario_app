@@ -1,0 +1,20 @@
+
+.container
+  .row.control-group
+    .col-lg-8.col-lg-offset-2.col-md-10.col-md-offset-1
+      %h1 Contactar
+      %br
+      = form_for Mensaje.new, url: contact_path do |mensaje_form|
+        %fieldset
+          .row.control-group
+            .form-group.col-xs-12.floating-label-form-group.controls
+              = mensaje_form.text_field :nombre, placeholder: "Nombre", class: 'form-control'
+          .row.control-group
+            .form-group.col-xs-12.floating-label-form-group.controls
+              = mensaje_form.email_field :email, placeholder: "Email", class: 'form-control'
+          .row.control-group
+            .form-group.col-xs-12.floating-label-form-group.controls
+              = mensaje_form.text_area :contenido, placeholder: "Mensaje", class: 'form-control'
+        %fieldset
+          .field
+            = mensaje_form.submit "Enviar", class: 'btn btn-default pull-right'

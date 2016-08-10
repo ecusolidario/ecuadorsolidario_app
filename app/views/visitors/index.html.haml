@@ -1,0 +1,85 @@
+/ Page Header
+/ Set your background image for this header on the line below.
+%header.intro-header.animated.fadeIn{:style => "background:linear-gradient(rgba(9, 36, 154,0.45),rgba(9, 36, 154,0.45)), url('#{image_url('img5')}');background-size:cover;"}
+  .container
+    .row
+      .col-lg-8.col-lg-offset-2.col-md-10.col-md-offset-1
+        .site-heading.animated.fadeIn
+          %h1.animated.bounceInUp Ayuda a Ecuador
+          %hr.small.animated.bounceInDown
+            %span.subheading Ecuador Solidario busca canalizar ayuda para reconstruir caso a caso los daños causados por el terremoto
+          %br
+          = link_to "Ver casos", casos_path, class: 'btn btn-default animated slideInLeft'
+          = link_to "Solicita ayuda", new_caso_path, class: 'btn btn-success  animated slideInRight'
+.container
+  .row
+    .col-md-12
+      - if @casos.count <= 0
+        .text-center
+          Todavía no se ha añadido ningún caso
+      - else
+        - @casos.each do |caso|
+          .col-md-4
+            = link_to caso do
+              .panel.panel-default.animated.bounceInUp
+                .panel-heading
+                  %h4= caso.titulo
+                - if caso.imagens.first
+                  = image_tag(caso.imagens.first.imagen.url(:thumb))
+                - else
+                  = image_tag('http://placehold.it/200x200',style: 'width:100%')
+                .panel-body.small
+                  Necesita:
+                  - caso.recursos.each_with_index do |rec, index|
+                    -if index > 0
+                      ,
+                      = rec.nombre.downcase unless !rec.nombre
+                    - else
+                      = rec.nombre
+                  %hr
+                  .progress
+                    .progress-bar.progress-bar-success{"aria-valuemax" => "100", "aria-valuemin" => "0", "aria-valuenow" => "#{caso.progreso}", :role => "progressbar", :style => "width:#{caso.progreso}%"}
+                    .progreso
+                      %span.small= caso.progreso
+                      %span.small= raw('%')
+                      %span.small conseguido
+.row.blog
+  .container
+    %h2.text-center
+      Últimos artículos en el Blog
+    - @posts.each do |articulo|
+      .col-md-4
+        = link_to blogit.post_path(articulo.id) do
+          .panel.panel-primary
+            .panel-heading
+              %h5= articulo.title
+            .panel-body
+              %p= articulo.description
+
+:css
+  .panel-body{color:grey}
+.row
+  .container
+    %h2.text-center
+      Colabora con ecuadorsolidario.org
+    .col-md-6
+      %p
+        Ecuador te necesita, puedes ayudarnos donando tu tiempo y tu conocimiento. Las áreas en las que necesitamos ayuda son:
+        %ul
+          %li Desarrollo en Ruby on Rails
+          %li Desarrollo Web
+          %li Arquitectura de Software
+          %li Project Management
+          %li Diseño UX/UI
+          %li Diseño Gráfico y Publicitario
+          %li Productor Audiovisual
+          %li Comunicación Digital
+          %li Relaciones Públicas
+          %li Data Entry
+    .col-md-6
+      %br
+      = image_tag 'imagencolaboracion.png', class: 'thumbnail'
+.text-center
+  Con el apoyo de
+  %br
+  (logos de colaboradores)

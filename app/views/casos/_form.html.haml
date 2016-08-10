@@ -1,0 +1,55 @@
+.well
+  = simple_nested_form_for @caso, :html => { :multipart => true } do |f|
+    %br
+      %h4 Título de tu caso
+      .small Que sintetize lo que necesitas.
+      = f.input :titulo, placeholder: "Titula el caso. p.ej. Reconstrucción de colegio", class: "form-control", label: false
+      %p
+        %h4 Video
+        = f.input :youtubevideo, placeholder: "Enlace a video de Youtube (si tienes uno)", class: "form-control", label: false
+      %p
+        %h4 Tu historia
+        .small Cuenta tu problema, y cómo se puede contactar contigo.
+        = f.input :problema, placeholder: "Describe el problema", class: "form-control",label: false
+      %p
+        %h4 ¿Dónde estás?
+        = f.text_field :ubicacion, placeholder: "Calle, Ciudad, Región", class: "form-control"
+      %p
+        %h4 Recursos necesarios
+        = f.fields_for :recursos do |recurso_form|
+          .row
+            .col-md-3
+              %h5 ¿Qué necesitas?
+              = recurso_form.text_field :nombre, class: "form-control"
+            .col-md-3
+              %h5 ¿Cuántas unidades necesitas?
+              = recurso_form.number_field :objetivo, class: "form-control"
+            .col-md-3
+              %h5 ¿Cuántas llevas conseguidas?
+              = recurso_form.number_field :conseguidos, value: 0, class: "form-control"
+            .col-md-3
+              = recurso_form.link_to_remove "X", class: 'btn btn-danger btn-xs'
+      %p
+        = f.link_to_add :recursos, class: 'btn btn-primary' do
+          %i.fa.fa-plus
+          Agregar recurso necesario
+    %h4
+      Agregar imágenes
+    .row.well
+      = file_field_tag "imagens[]", type: :file, multiple: true, class: 'small well'
+      .form-inputs
+        .form-inline
+          - if @caso.imagens
+            - @caso.imagens.each do |foto|
+              .col-md-2
+                .well
+                  = f.simple_fields_for :imagens, foto do |image_fields|
+                    = image_tag foto.imagen.url(:thumb)
+                    = image_fields.check_box :_destroy
+                    .small Borrar imagen
+    .form-actions.text-right
+      = f.button :submit, class: "btn btn-primary btn-lg enviar"
+:javascript
+  $( ".enviar" ).click(function() {
+    $('#caso_ubicacion').val($('#caso_ubicacion').val() + ', Ecuador');
+  });

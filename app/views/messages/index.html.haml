@@ -1,0 +1,19 @@
+.container
+  %h1 Mensajes
+  - if @over_ten
+    = link_to 'Anterior', '?m=all'
+  - @messages.each do |message|
+    - if message.body
+      - user = User.find(message.user_id)
+      .well
+        .small.badge
+          %strong= user.name
+          = message.message_time
+        .item
+          %i.right.triangle.icon
+          = message.body
+  = form_for [@conversation, @message], html: {class: "ui reply form"} do |f|
+    = f.text_area :body, class: "form-control", style: "width:100%"
+    = f.text_field :user_id, value: current_user.id, type: "hidden"
+    %br
+    = f.submit "Enviar", class: "btn btn-success pull-right"

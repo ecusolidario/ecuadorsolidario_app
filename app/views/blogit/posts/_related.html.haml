@@ -1,0 +1,6 @@
+#blogit_related_posts
+  %h3.blogit_related_posts__header.blogit_header--section
+    = t :related_posts, :scope => "blogit.posts"
+  .blogit_related_posts__list
+    = render partial: "blogit/posts/related_post",                |
+      collection: related_posts_for_post(post), as: :related_post |
